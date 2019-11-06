@@ -51,7 +51,7 @@ MonoBehaviour:
   - source: {fileID: 0}
     clip: {fileID: 8300000, guid: abf87d3750b02e548ab586fd706e2adc, type: 3}
     name: EntryInteractable
-    loop: 0
+    loop: 1
   - source: {fileID: 0}
     clip: {fileID: 8300000, guid: f30dad7cc74726449ac9318af0270303, type: 3}
     name: Room1Ambience

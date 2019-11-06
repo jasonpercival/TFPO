@@ -12,6 +12,9 @@ public class CameraMove : MonoBehaviour
 
     public RaycastHit hit;
     Ray ray;
+    public float timeToDestroy;
+
+    public GameObject infoBox;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +33,35 @@ public class CameraMove : MonoBehaviour
 
         ray = new Ray(camera.position, camera.rotation * Vector3.forward);
 
+        if (Physics.Raycast(ray, out hit))
+        {
+
+            if (hit.collider != null)
+            {
+                if(hit.collider.tag == "Info")
+                {
+                    GameObject infoCircle = GameObject.FindGameObjectWithTag("Info");
+
+                    timeToDestroy += Time.deltaTime;
+
+                    if(timeToDestroy >= 1)
+                    {
+                        infoCircle.SetActive(false);
+                        infoBox.SetActive(true);
+
+                        if (infoBox.activeSelf)
+                        {
+                            print("GoFuckYourself");
+                        }
+                    }
+                }
+            }        
+        }
+
+        else
+        {
+            timeToDestroy = 0;
+        }
     }
 
     void CameraMovement()
