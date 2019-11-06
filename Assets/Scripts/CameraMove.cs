@@ -16,6 +16,7 @@ public class CameraMove : MonoBehaviour
     public float timeToDestroy;
 
     public GameObject infoBox;
+    public GameObject infoBox2;
 
     public bool playedSound;
 
@@ -23,6 +24,14 @@ public class CameraMove : MonoBehaviour
     void Start()
     {
         playedSound = false;
+
+
+        if (!SceneManager.GetSceneByName("Room2").isLoaded)
+        {
+            infoBox2 = null;
+         
+        }
+       
     }
 
     // Update is called once per frame
