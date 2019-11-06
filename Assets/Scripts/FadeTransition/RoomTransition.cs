@@ -20,6 +20,7 @@ public class RoomTransition : MonoBehaviour {
     }
 
     public void OnFadeComplete() {
+        AudioManager.instance.StopAllSounds();
         SceneManager.LoadScene(levelName);
     }
 }
