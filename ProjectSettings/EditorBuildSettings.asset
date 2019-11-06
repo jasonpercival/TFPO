@@ -4,5 +4,20 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/EntryDoor.unity
+    guid: 4cddac700f436cb4991cbf6a7d4bde39
+  - enabled: 1
+    path: Assets/Scenes/Room1.unity
+    guid: 67f1a20458cce274f835fb5ecabaaf6c
+  - enabled: 1
+    path: Assets/Scenes/Room2.unity
+    guid: 25c6a6ee4cac7554598a96ac5a043872
+  - enabled: 1
+    path: Assets/Scenes/Room3.unity
+    guid: 336d9500a149b3b4281ba5d27fb8e6a0
+  - enabled: 1
+    path: Assets/Scenes/WalkWay.unity
+    guid: 89feda553dc1dca4786393b7b21857ea
   m_configObjects: {}
