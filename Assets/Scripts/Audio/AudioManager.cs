@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour {
     // Singleton Variable
@@ -24,10 +25,25 @@ public class AudioManager : MonoBehaviour {
         }
     }
 
-    // Use the start method for testing if necessary
-    public void Start()
-    {
-        PlaySound("EntryAmbience");
+    // Setting the ambient sounds depending on the current room the user is in
+    public void Start() {
+        string curRoom = SceneManager.GetActiveScene().name;
+
+        switch (curRoom) {
+            case "EntryDoor":
+                PlaySound("EntryAmbience");
+                break;
+            case "Room1":
+                PlaySound("Room1Ambience");
+                break;
+            case "Room2":
+                PlaySound("Room2Ambience");
+                break;
+            case "WalkWay":
+                PlaySound("WalkwayFootsteps1");
+                PlaySound("WalkwayFootssteps2");
+                break;
+        }
     }
 
     // Attemps to find a sound the name to play it
