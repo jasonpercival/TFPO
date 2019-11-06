@@ -76,3 +76,11 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: fdc20953049c4e743bd91b61f325f48c, type: 3}
     name: Room3Sound
     loop: 0
+  - source: {fileID: 0}
+    clip: {fileID: 8300000, guid: 5f9a31af6fe8dc44f980eab7e424b174, type: 3}
+    name: Room3Interactable
+    loop: 0
+  - source: {fileID: 0}
+    clip: {fileID: 8300000, guid: 2c6802fbd1cc1614fb9f75fa4d0e7985, type: 3}
+    name: Room4Interactable
+    loop: 0
