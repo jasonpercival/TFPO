@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class CameraMove : MonoBehaviour
 {
@@ -57,13 +58,43 @@ public class CameraMove : MonoBehaviour
 
                     if(timeToDestroy >= 1)
                     {
-                        infoCircle.SetActive(false);
+                        infoCircle.GetComponent<Image>().enabled = false;
                         infoBox.SetActive(true);
 
                         if (infoBox.activeSelf)
                         {
-                            StartCoroutine(PlayEntryVoiceOver());
-                   
+                            if (SceneManager.GetSceneByName("EntryDoor").isLoaded)
+                            {
+                                StartCoroutine(PlayEntryVoiceOver("EntryInteractable"));
+                            }
+
+                            if (SceneManager.GetSceneByName("Room2").isLoaded)
+                            {
+                                StartCoroutine(PlayEntryVoiceOver("Room2Interactable1"));
+                            }
+
+                        }
+                    }
+                }
+
+             
+
+                else if(hit.collider.tag == "Info2")
+                {
+                    GameObject infoCircle = GameObject.FindGameObjectWithTag("Info2");
+
+                    timeToDestroy += Time.deltaTime;
+
+                    if (timeToDestroy >= 1)
+                    {
+                        infoCircle.GetComponent<Image>().enabled = false;
+                        infoBox2.SetActive(true);
+
+                        if (!infoCircle.GetComponent<Image>().enabled)
+                        {
+                         
+                          StartCoroutine(PlayEntryVoiceOver("Room2Interactable2"));
+                            
                         }
                     }
                 }
@@ -73,9 +104,11 @@ public class CameraMove : MonoBehaviour
         else
         {
             timeToDestroy = 0;
+            //infoBox.SetActive(false);
+            //infoBox2.SetActive(false);
         }
 
-        if (playedSound)
+        if (playedSound && SceneManager.GetSceneByName("EntryDoor").isLoaded)
         {
             RoomTransition.instance.FadeToLevel("Room1");
         }
@@ -89,9 +122,9 @@ public class CameraMove : MonoBehaviour
         transform.eulerAngles = new Vector3(pitch, yaw, 0.0f);
     }
 
-    public IEnumerator PlayEntryVoiceOver()
+    public IEnumerator PlayEntryVoiceOver(string clipPlaying)
     {
-        AudioManager.instance.PlaySound("EntryInteractable");
+        AudioManager.instance.PlaySound(clipPlaying);
         yield return new WaitForSeconds(AudioManager.instance.sounds[1].clip.length);
         playedSound = true;
     }
