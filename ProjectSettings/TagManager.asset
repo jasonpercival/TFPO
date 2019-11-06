@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Infobox
   - Info
+  - Navigation
   layers:
   - Default
   - TransparentFX
