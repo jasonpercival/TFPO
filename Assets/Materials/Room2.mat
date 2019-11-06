@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: PhotoSphere
+  m_Name: Room2
   m_Shader: {fileID: 4800000, guid: 5a774813eefd04cf5a62b9a8f4614569, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -40,7 +40,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 88bfdacc92eb0904d92e2366b5ffdde5, type: 3}
+        m_Texture: {fileID: 2800000, guid: 2f922485f1f9d9a4ba466fb603000809, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
