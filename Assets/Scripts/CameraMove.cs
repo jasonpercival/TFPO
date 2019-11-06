@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CameraMove : MonoBehaviour
 {
@@ -16,10 +17,12 @@ public class CameraMove : MonoBehaviour
 
     public GameObject infoBox;
 
+    public bool playedSound;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        playedSound = false;
     }
 
     // Update is called once per frame
@@ -51,7 +54,9 @@ public class CameraMove : MonoBehaviour
 
                         if (infoBox.activeSelf)
                         {
-                            print("GoFuckYourself");
+                            StartCoroutine(PlayEntryVoiceOver());
+
+                   
                         }
                     }
                 }
@@ -70,5 +75,12 @@ public class CameraMove : MonoBehaviour
         pitch -= verticalSpeed * Input.GetAxis("Mouse Y");
 
         transform.eulerAngles = new Vector3(pitch, yaw, 0.0f);
+    }
+
+    public IEnumerator PlayEntryVoiceOver()
+    {
+        AudioManager.instance.PlaySound("EntryInteractable");
+        yield return new WaitForSeconds(AudioManager.instance.sounds[1].clip.length);
+        playedSound = true;
     }
 }
