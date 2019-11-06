@@ -38,7 +38,6 @@ public class CameraMove : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit))
         {
-
             if (hit.collider != null)
             {
                 if(hit.collider.tag == "Info")
@@ -55,7 +54,6 @@ public class CameraMove : MonoBehaviour
                         if (infoBox.activeSelf)
                         {
                             StartCoroutine(PlayEntryVoiceOver());
-
                    
                         }
                     }
@@ -66,6 +64,11 @@ public class CameraMove : MonoBehaviour
         else
         {
             timeToDestroy = 0;
+        }
+
+        if (playedSound)
+        {
+            RoomTransition.instance.FadeToLevel("Room1");
         }
     }
 
