@@ -25,9 +25,10 @@ public class AudioManager : MonoBehaviour {
     }
 
     // Use the start method for testing if necessary
-    //public void Start() {
-    //    PlaySound("EntryAmbience");
-    //}
+    public void Start()
+    {
+        PlaySound("EntryAmbience");
+    }
 
     // Attemps to find a sound the name to play it
     public void PlaySound(string name) {
