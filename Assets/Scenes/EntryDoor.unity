@@ -541,6 +541,11 @@ PrefabInstance:
       propertyPath: infoBox
       value: 
       objectReference: {fileID: 1726848734}
+    - target: {fileID: 8942135866708284508, guid: bbc2a024411163e42854906e187693db,
+        type: 3}
+      propertyPath: infoCircle
+      value: 
+      objectReference: {fileID: 1506644283}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bbc2a024411163e42854906e187693db, type: 3}
 --- !u!1 &1244658924
@@ -624,6 +629,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1244658924}
   m_CullTransparentMesh: 0
+--- !u!1 &1506644283 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3626726852256473683, guid: 82b6e9770e958f0439300df722244efd,
+    type: 3}
+  m_PrefabInstance: {fileID: 3626726852771604787}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1583713220
 PrefabInstance:
   m_ObjectHideFlags: 0

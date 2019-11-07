@@ -15,11 +15,16 @@ public class CameraMove : MonoBehaviour
     public RaycastHit hit;
     Ray ray;
     public float timeToDestroy;
+    bool info2;
 
     public GameObject infoBox;
     public GameObject infoBox2;
 
+    public GameObject infoCircle;
+    public GameObject infoCircle2;
+
     public bool playedSound;
+    public bool playedSound1;
 
     // Start is called before the first frame update
     void Start()
@@ -32,7 +37,13 @@ public class CameraMove : MonoBehaviour
             infoBox2 = null;
          
         }
-       
+
+        if (!SceneManager.GetSceneByName("Room2").isLoaded)
+        {
+            infoCircle2 = null;
+
+        }
+
     }
 
     // Update is called once per frame
@@ -52,27 +63,31 @@ public class CameraMove : MonoBehaviour
             {
                 if(hit.collider.tag == "Info")
                 {
-                    GameObject infoCircle = GameObject.FindGameObjectWithTag("Info");
+                    
 
                     timeToDestroy += Time.deltaTime;
 
-                    if(timeToDestroy >= 1)
+                    if(timeToDestroy >= 3)
                     {
-                        infoCircle.GetComponent<Image>().enabled = false;
+                        infoCircle.SetActive(false);
                         infoBox.SetActive(true);
 
+                        if (SceneManager.GetSceneByName("EntryDoor").isLoaded)
+                        {
+                            StartCoroutine(PlayEntryVoiceOver("EntryInteractable"));
+                        }
 
-                            if (SceneManager.GetSceneByName("EntryDoor").isLoaded)
-                            {
-                                StartCoroutine(PlayEntryVoiceOver("EntryInteractable"));
-                            }
+                        if (SceneManager.GetSceneByName("Room1").isLoaded)
+                        {
+                            StartCoroutine(PlayEntryVoiceOver("Room1Interactable"));
+                        }
 
-                            if (SceneManager.GetSceneByName("Room2").isLoaded)
-                            {
-                                StartCoroutine(PlayEntryVoiceOver("Room2Interactable1"));
-                            }
+                        if (SceneManager.GetSceneByName("Room2").isLoaded)
+                        {
+                            StartCoroutine(PlayEntryVoiceOver("Room2Interactable2"));
+                        }
 
-                        
+                       
                     }
                 }
 
@@ -80,21 +95,44 @@ public class CameraMove : MonoBehaviour
 
                 else if(hit.collider.tag == "Info2")
                 {
-                    GameObject infoCircle = GameObject.FindGameObjectWithTag("Info2");
 
                     timeToDestroy += Time.deltaTime;
 
-                    if (timeToDestroy >= 1)
+                    if (timeToDestroy >= 3)
                     {
-                        infoCircle.GetComponent<Image>().enabled = false;
+                        infoCircle2.SetActive(false);
                         infoBox2.SetActive(true);
 
-                        
-
-                          StartCoroutine(PlayEntryVoiceOver("Room2Interactable2"));
-                            
-                        
+                        info2 = true;
+                        StartCoroutine(PlayEntryVoiceOver("Room2Interactable1"));
                     }
+                }
+
+                else if(hit.collider.tag == "Navigation1")
+                {
+                    timeToDestroy += Time.deltaTime;
+                    if(timeToDestroy >= 3) { RoomTransition.instance.FadeToLevel("Room1"); }
+                    
+                }
+
+                else if(hit.collider.tag ==  "Navigation2")
+                {
+                    timeToDestroy += Time.deltaTime;
+                    if (timeToDestroy >= 3) { RoomTransition.instance.FadeToLevel("Room2"); }
+                    
+                }
+                else if (hit.collider.tag == "Navigation3")
+                {
+                    timeToDestroy += Time.deltaTime;
+                    if (timeToDestroy >= 3) { RoomTransition.instance.FadeToLevel("WalkWay"); }
+                    
+                }
+
+                else if(hit.collider.tag == "Navigation4")
+                {
+                    timeToDestroy += Time.deltaTime;
+                    if (timeToDestroy >= 3) { RoomTransition.instance.FadeToLevel("Room3"); }
+                    
                 }
             }        
         }
@@ -102,14 +140,14 @@ public class CameraMove : MonoBehaviour
         else
         {
             timeToDestroy = 0;
-            infoBox.SetActive(false);
-            infoBox2.SetActive(false);
+            
         }
 
         if (playedSound && SceneManager.GetSceneByName("EntryDoor").isLoaded)
         {
             RoomTransition.instance.FadeToLevel("Room1");
         }
+
     }
 
     void CameraMovement()
@@ -123,19 +161,41 @@ public class CameraMove : MonoBehaviour
     public IEnumerator PlayEntryVoiceOver(string clipPlaying)
     {
         AudioManager.instance.PlaySound(clipPlaying);
+
         if (SceneManager.GetSceneByName("EntryDoor").isLoaded)
         {
             yield return new WaitForSeconds(AudioManager.instance.sounds[1].clip.length);
+            playedSound = true;
         }
 
         else if (SceneManager.GetSceneByName("Room1").isLoaded)
         {
-
+            yield return new WaitForSeconds(AudioManager.instance.sounds[3].clip.length);
+            infoCircle.SetActive(true);
+            infoBox.SetActive(false);
+            playedSound = true;
         }
+
         else if (SceneManager.GetSceneByName("Room2").isLoaded)
         {
+            if (!info2)
+            {
+                yield return new WaitForSeconds(AudioManager.instance.sounds[9].clip.length);
+                infoCircle.SetActive(true);
+                infoBox.SetActive(false);
+                playedSound = true;
+            }
 
+            else
+            {
+                yield return new WaitForSeconds(AudioManager.instance.sounds[8].clip.length);
+                infoCircle2.SetActive(true);
+                infoBox2.SetActive(false);
+                playedSound1 = true;
+                info2 = false;
+            }
         }
-        playedSound = true;
+
+        
     }
 }

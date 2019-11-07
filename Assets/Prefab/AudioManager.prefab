@@ -78,9 +78,9 @@ MonoBehaviour:
     loop: 0
   - source: {fileID: 0}
     clip: {fileID: 8300000, guid: 5f9a31af6fe8dc44f980eab7e424b174, type: 3}
-    name: Room3Interactable
+    name: Room2Interactable1
     loop: 0
   - source: {fileID: 0}
     clip: {fileID: 8300000, guid: 2c6802fbd1cc1614fb9f75fa4d0e7985, type: 3}
-    name: Room4Interactable
+    name: Room2Interactable2
     loop: 0
