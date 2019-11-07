@@ -67,7 +67,7 @@ public class CameraMove : MonoBehaviour
 
                     timeToDestroy += Time.deltaTime;
 
-                    if(timeToDestroy >= 3)
+                    if(timeToDestroy >= 2)
                     {
                         infoCircle.SetActive(false);
                         infoBox.SetActive(true);
@@ -98,7 +98,7 @@ public class CameraMove : MonoBehaviour
 
                     timeToDestroy += Time.deltaTime;
 
-                    if (timeToDestroy >= 3)
+                    if (timeToDestroy >= 2)
                     {
                         infoCircle2.SetActive(false);
                         infoBox2.SetActive(true);
@@ -111,27 +111,27 @@ public class CameraMove : MonoBehaviour
                 else if(hit.collider.tag == "Navigation1")
                 {
                     timeToDestroy += Time.deltaTime;
-                    if(timeToDestroy >= 3) { RoomTransition.instance.FadeToLevel("Room1"); }
+                    if(timeToDestroy >= 2) { RoomTransition.instance.FadeToLevel("Room1"); }
                     
                 }
 
                 else if(hit.collider.tag ==  "Navigation2")
                 {
                     timeToDestroy += Time.deltaTime;
-                    if (timeToDestroy >= 3) { RoomTransition.instance.FadeToLevel("Room2"); }
+                    if (timeToDestroy >= 2) { RoomTransition.instance.FadeToLevel("Room2"); }
                     
                 }
                 else if (hit.collider.tag == "Navigation3")
                 {
                     timeToDestroy += Time.deltaTime;
-                    if (timeToDestroy >= 3) { RoomTransition.instance.FadeToLevel("WalkWay"); }
+                    if (timeToDestroy >= 2) { RoomTransition.instance.FadeToLevel("WalkWay"); }
                     
                 }
 
                 else if(hit.collider.tag == "Navigation4")
                 {
                     timeToDestroy += Time.deltaTime;
-                    if (timeToDestroy >= 3) { RoomTransition.instance.FadeToLevel("Room3"); }
+                    if (timeToDestroy >= 2) { RoomTransition.instance.FadeToLevel("Room3"); }
                     
                 }
             }        
