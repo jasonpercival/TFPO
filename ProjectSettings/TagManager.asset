@@ -8,6 +8,10 @@ TagManager:
   - Info
   - Navigation
   - Info2
+  - Navigation2
+  - Navigation1
+  - Navigation3
+  - Navigation4
   layers:
   - Default
   - TransparentFX
