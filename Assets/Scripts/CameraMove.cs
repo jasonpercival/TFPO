@@ -61,8 +61,7 @@ public class CameraMove : MonoBehaviour
                         infoCircle.GetComponent<Image>().enabled = false;
                         infoBox.SetActive(true);
 
-                        if (infoBox.activeSelf)
-                        {
+
                             if (SceneManager.GetSceneByName("EntryDoor").isLoaded)
                             {
                                 StartCoroutine(PlayEntryVoiceOver("EntryInteractable"));
@@ -73,7 +72,7 @@ public class CameraMove : MonoBehaviour
                                 StartCoroutine(PlayEntryVoiceOver("Room2Interactable1"));
                             }
 
-                        }
+                        
                     }
                 }
 
@@ -90,12 +89,11 @@ public class CameraMove : MonoBehaviour
                         infoCircle.GetComponent<Image>().enabled = false;
                         infoBox2.SetActive(true);
 
-                        if (!infoCircle.GetComponent<Image>().enabled)
-                        {
-                         
+                        
+
                           StartCoroutine(PlayEntryVoiceOver("Room2Interactable2"));
                             
-                        }
+                        
                     }
                 }
             }        
@@ -104,8 +102,8 @@ public class CameraMove : MonoBehaviour
         else
         {
             timeToDestroy = 0;
-            //infoBox.SetActive(false);
-            //infoBox2.SetActive(false);
+            infoBox.SetActive(false);
+            infoBox2.SetActive(false);
         }
 
         if (playedSound && SceneManager.GetSceneByName("EntryDoor").isLoaded)
@@ -125,7 +123,19 @@ public class CameraMove : MonoBehaviour
     public IEnumerator PlayEntryVoiceOver(string clipPlaying)
     {
         AudioManager.instance.PlaySound(clipPlaying);
-        yield return new WaitForSeconds(AudioManager.instance.sounds[1].clip.length);
+        if (SceneManager.GetSceneByName("EntryDoor").isLoaded)
+        {
+            yield return new WaitForSeconds(AudioManager.instance.sounds[1].clip.length);
+        }
+
+        else if (SceneManager.GetSceneByName("Room1").isLoaded)
+        {
+
+        }
+        else if (SceneManager.GetSceneByName("Room2").isLoaded)
+        {
+
+        }
         playedSound = true;
     }
 }
