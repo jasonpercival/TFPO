@@ -1504,8 +1504,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 17, y: 124}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 9.3, y: 338.1}
+  m_SizeDelta: {x: 278.1, y: 106.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1943514978
 MonoBehaviour:
@@ -1540,7 +1540,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Seal the envelope.
+  m_Text: Finally, use sealing wax and brass seals to close the letter. Give it back
+    to the postmaster or drop it in the letterbox outside.
 --- !u!222 &1943514979
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1575,7 +1576,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1985350451}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 1909504240}
@@ -1583,8 +1584,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 2, y: 114}
-  m_SizeDelta: {x: 275, y: 30}
+  m_AnchoredPosition: {x: 8, y: 304}
+  m_SizeDelta: {x: 281, y: 69.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1985350453
 MonoBehaviour:
@@ -1619,7 +1620,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Writing a letter using quill and ink.
+  m_Text: 'Use the quill and ink to write your letter and then cover it up with sand
+    to dry off the extra ink.
 
 '
 --- !u!222 &1985350454
