@@ -51,7 +51,7 @@ public class CameraMove : MonoBehaviour
     {
         Transform camera = Camera.main.transform;
 
-        CameraMovement();
+        //CameraMovement();
         hit = new RaycastHit();
         Debug.DrawRay(camera.position, camera.rotation * Vector3.forward * 10000.0f, Color.red);
 
@@ -90,9 +90,6 @@ public class CameraMove : MonoBehaviour
                        
                     }
                 }
-
-             
-
                 else if(hit.collider.tag == "Info2")
                 {
 
@@ -127,13 +124,17 @@ public class CameraMove : MonoBehaviour
                     if (timeToDestroy >= 2) { RoomTransition.instance.FadeToLevel("WalkWay"); }
                     
                 }
-
                 else if(hit.collider.tag == "Navigation4")
                 {
                     timeToDestroy += Time.deltaTime;
-                    if (timeToDestroy >= 2) { RoomTransition.instance.FadeToLevel("Room3"); }
-                    
+                    if (timeToDestroy >= 2) { RoomTransition.instance.FadeToLevel("Room3"); }                    
                 }
+                else if (hit.collider.tag == "Navigation5")
+                {
+                    timeToDestroy += Time.deltaTime;
+                    if (timeToDestroy >= 2) { RoomTransition.instance.FadeToLevel("EntryDoor"); }
+                }
+
             }        
         }
 
@@ -164,7 +165,7 @@ public class CameraMove : MonoBehaviour
 
         if (SceneManager.GetSceneByName("EntryDoor").isLoaded)
         {
-            yield return new WaitForSeconds(AudioManager.instance.sounds[1].clip.length);
+            yield return new WaitForSeconds(AudioManager.instance.sounds[1].clip.length+1);
             playedSound = true;
         }
 
