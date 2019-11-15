@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -26,6 +27,9 @@ public class CameraMove : MonoBehaviour
     public bool playedSound;
     public bool playedSound1;
 
+    public GameObject radialProgress;
+    public GameObject loadingBar;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,7 +39,7 @@ public class CameraMove : MonoBehaviour
         if (!SceneManager.GetSceneByName("Room2").isLoaded)
         {
             infoBox2 = null;
-         
+
         }
 
         if (!SceneManager.GetSceneByName("Room2").isLoaded)
@@ -49,6 +53,12 @@ public class CameraMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (Input.GetKeyDown(KeyCode.R)) 
+        {
+            Restart();
+        }
+
         Transform camera = Camera.main.transform;
 
         //CameraMovement();
@@ -61,13 +71,12 @@ public class CameraMove : MonoBehaviour
         {
             if (hit.collider != null)
             {
-                if(hit.collider.tag == "Info")
+                if (hit.collider.tag == "Info")
                 {
-                    
-
                     timeToDestroy += Time.deltaTime;
+                    UpdateLoadingIndicator();
 
-                    if(timeToDestroy >= 2)
+                    if (timeToDestroy >= 2)
                     {
                         infoCircle.SetActive(false);
                         infoBox.SetActive(true);
@@ -87,13 +96,13 @@ public class CameraMove : MonoBehaviour
                             StartCoroutine(PlayEntryVoiceOver("Room2Interactable2"));
                         }
 
-                       
+
                     }
                 }
-                else if(hit.collider.tag == "Info2")
+                else if (hit.collider.tag == "Info2")
                 {
-
                     timeToDestroy += Time.deltaTime;
+                    UpdateLoadingIndicator();
 
                     if (timeToDestroy >= 2)
                     {
@@ -104,44 +113,43 @@ public class CameraMove : MonoBehaviour
                         StartCoroutine(PlayEntryVoiceOver("Room2Interactable1"));
                     }
                 }
-
-                else if(hit.collider.tag == "Navigation1")
+                else if (hit.collider.tag == "Navigation1")
                 {
                     timeToDestroy += Time.deltaTime;
-                    if(timeToDestroy >= 2) { RoomTransition.instance.FadeToLevel("Room1"); }
-                    
+                    UpdateLoadingIndicator();
+                    if (timeToDestroy >= 2) { RoomTransition.instance.FadeToLevel("Room1"); }
                 }
-
-                else if(hit.collider.tag ==  "Navigation2")
+                else if (hit.collider.tag == "Navigation2")
                 {
                     timeToDestroy += Time.deltaTime;
+                    UpdateLoadingIndicator();
                     if (timeToDestroy >= 2) { RoomTransition.instance.FadeToLevel("Room2"); }
-                    
                 }
                 else if (hit.collider.tag == "Navigation3")
                 {
                     timeToDestroy += Time.deltaTime;
+                    UpdateLoadingIndicator();
                     if (timeToDestroy >= 2) { RoomTransition.instance.FadeToLevel("WalkWay"); }
-                    
                 }
-                else if(hit.collider.tag == "Navigation4")
+                else if (hit.collider.tag == "Navigation4")
                 {
                     timeToDestroy += Time.deltaTime;
-                    if (timeToDestroy >= 2) { RoomTransition.instance.FadeToLevel("Room3"); }                    
+                    UpdateLoadingIndicator();
+                    if (timeToDestroy >= 2) { RoomTransition.instance.FadeToLevel("Room3"); }
                 }
                 else if (hit.collider.tag == "Navigation5")
                 {
                     timeToDestroy += Time.deltaTime;
+                    UpdateLoadingIndicator();
                     if (timeToDestroy >= 2) { RoomTransition.instance.FadeToLevel("EntryDoor"); }
                 }
-
-            }        
+            }
         }
-
         else
         {
             timeToDestroy = 0;
-            
+            HideLoadingIndicator();
+
         }
 
         if (playedSound && SceneManager.GetSceneByName("EntryDoor").isLoaded)
@@ -149,6 +157,26 @@ public class CameraMove : MonoBehaviour
             RoomTransition.instance.FadeToLevel("Room1");
         }
 
+    }
+
+    private void Restart()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    private void HideLoadingIndicator()
+    {
+        if (radialProgress)
+            radialProgress.SetActive(false);
+    }
+
+    private void UpdateLoadingIndicator()
+    {
+        if (radialProgress)
+        {
+            radialProgress.SetActive(true);
+            loadingBar.GetComponent<Image>().fillAmount = timeToDestroy / 2.0f;
+        }
     }
 
     void CameraMovement()
@@ -165,10 +193,9 @@ public class CameraMove : MonoBehaviour
 
         if (SceneManager.GetSceneByName("EntryDoor").isLoaded)
         {
-            yield return new WaitForSeconds(AudioManager.instance.sounds[1].clip.length+1);
+            yield return new WaitForSeconds(AudioManager.instance.sounds[1].clip.length + 1);
             playedSound = true;
         }
-
         else if (SceneManager.GetSceneByName("Room1").isLoaded)
         {
             yield return new WaitForSeconds(AudioManager.instance.sounds[3].clip.length);
@@ -186,7 +213,6 @@ public class CameraMove : MonoBehaviour
                 infoBox.SetActive(false);
                 playedSound = true;
             }
-
             else
             {
                 yield return new WaitForSeconds(AudioManager.instance.sounds[8].clip.length);
@@ -196,7 +222,5 @@ public class CameraMove : MonoBehaviour
                 info2 = false;
             }
         }
-
-        
     }
 }
